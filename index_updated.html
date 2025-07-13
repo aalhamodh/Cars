@@ -1,0 +1,131 @@
+<!-- السكربت الحالي في نهاية الملف - تم توسيعه ليشمل معالجة النماذج الجديدة -->
+<script>
+    // Maintenance Chart
+    const maintenanceCtx = document.getElementById('maintenanceChart').getContext('2d');
+    new Chart(maintenanceCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['تم التنفيذ', 'مجدول', 'متأخر'],
+            datasets: [{
+                data: [65, 25, 10],
+                backgroundColor: ['#10b981', '#f59e0b', '#ef4444']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Driver Chart
+    const driverCtx = document.getElementById('driverChart').getContext('2d');
+    new Chart(driverCtx, {
+        type: 'bar',
+        data: {
+            labels: ['محمد أحمد', 'علي محمد', 'سعد عبدالله', 'أحمد علي'],
+            datasets: [{
+                label: 'عدد المركبات',
+                data: [3, 2, 1, 2],
+                backgroundColor: '#3b82f6'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    // Tracking Chart
+    const trackingCtx = document.getElementById('trackingChart').getContext('2d');
+    new Chart(trackingCtx, {
+        type: 'line',
+        data: {
+            labels: ['الأسبوع 1', 'الأسبوع 2', 'الأسبوع 3', 'الأسبوع 4'],
+            datasets: [{
+                label: 'المسافة (كم)',
+                data: [1200, 1800, 1500, 2000],
+                borderColor: '#10b981',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    // Fuel Chart
+    const fuelCtx = document.getElementById('fuelChart').getContext('2d');
+    new Chart(fuelCtx, {
+        type: 'bar',
+        data: {
+            labels: ['تويوتا كامري', 'هوندا أكورد', 'نيسان التيما', 'هيونداي النترا'],
+            datasets: [{
+                label: 'كم/لتر',
+                data: [12.5, 11.8, 13.2, 12.0],
+                backgroundColor: '#f59e0b'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    // Costs Chart
+    const costsCtx = document.getElementById('costsChart').getContext('2d');
+    new Chart(costsCtx, {
+        type: 'line',
+        data: {
+            labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+            datasets: [{
+                label: 'التكلفة (ريال)',
+                data: [15000, 18000, 12000, 22000, 19000, 16000],
+                borderColor: '#ef4444',
+                fill: true,
+                backgroundColor: 'rgba(239, 68, 68, 0.1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    // نموذج الصيانة
+    document.getElementById('maintenanceForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(this));
+        console.log("صيانة جديدة:", data);
+        alert("تم حفظ بيانات الصيانة لـ " + data.vehicleName);
+        this.reset();
+    });
+
+    // نموذج السائق
+    document.getElementById('driverForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(this));
+        console.log("سائق جديد:", data);
+        alert("تم إضافة السائق: " + data.driverName);
+        this.reset();
+    });
+
+    // نموذج المركبة الجديدة
+    document.getElementById('addVehicleForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(this));
+        console.log("مركبة جديدة:", data);
+        alert("تمت إضافة المركبة: " + data.vehicleName + " بنجاح");
+        this.reset();
+    });
+</script>
